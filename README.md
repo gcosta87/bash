@@ -23,3 +23,13 @@ Algunos usos pueden ser:
 * Llevar un Historial/Registro de Saldo.
 * Utilizar bajo otro script para generar una pequeña "alarma" ante cambios del saldo
 * Para informar al usuario en otros contextos: via mail, usando Conky (widget para desktop) ;)
+
+
+## IMDB
+Son dos pequeños scripts para:
+* Obtener el titulo en español de una pelicula segun su URl o  su "ID" ( *ttxxxxxxx* ) dentro de la web de IMDB.com, que haya sido lanzada (released) en Argentina.
+* Extraer todos los IDs de un resultado de una Búsqueda Avanzada ([Advanced Title Search](http://www.imdb.com/search/title)), generando un archivo *.txt con todas las IDs.
+ 
+Gracias a ellos es posible, usando en su conjunto, obtener un listado de titulos en base a una busqueda de IMDB.
+
+Puede llegar a ser útil para armar listados temáticos: Peliculas de los 80, protagonizadas por determinado actor,etc.
