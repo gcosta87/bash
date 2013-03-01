@@ -14,7 +14,7 @@ Para utilizarlo primero hay que crear un Perfil de cuenta ( *crearPerfil.sh* ), 
 
 Una vez creado los perfiles, es posible consultar el saldo. Se ejecuta el script *chequearSaldo.sh* , y este realiza las siguientes acciones:
 * Informa al usuario (via notify-send) el saldo del celular/es consultado/s
-* Guarda en un archivo (reporte.csv) el resultado obtenido, acompañado con la fecha, hora y la diferencia con el saldo anterior. Actualmente esta diferencia sirve para cuando se consulta 1 solo perfil, sera modificado para soportar correctamente varios.
+* Guarda en un archivo (reporte.csv) el resultado obtenido, acompañado con la fecha, hora y la diferencia con el saldo anterior. 
 
 Adicionalmente se adjunta un pequeño script,*servicio.sh*, para definirlo en el arranque del sistema/sesion (p.e *.config/autorun*) y asi automatizar el chequeo.Este lanza la aplizacion cada 4 HS. Es util para monitorear cambios en el saldo (usando el archivo CSV).
 
