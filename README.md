@@ -24,6 +24,8 @@ Algunos usos pueden ser:
 * Utilizar bajo otro script para generar una pequeña "alarma" ante cambios del saldo
 * Para informar al usuario en otros contextos: via mail, usando Conky (widget para desktop) ;)
 
+### Estado:
+Actualmente (3/3/2013) el script funciona. Días a tras dejo de funcionar debido a cambios en el servidor de Personal que afectaban la autentificación (login). Esto se ve en el script comentado como método "nuevo" o "viejo", donde están comentadas lineas que si llegara el caso de que volviera a cambiar el servidor están disponibles.
 
 ## IMDB
 Son dos pequeños scripts para:

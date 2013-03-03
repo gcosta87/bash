@@ -24,15 +24,16 @@
 
 readonly URL_PERSONAL_LOGIN="https://autogestion.personal.com.ar/individuos/"
 #URL para la version anterior a la actualizacion de 02/13
-#~ readonly URL_PERSONAL_LOGIN_VALIDACION="https://autogestion.personal.com.ar/individuos/"
-readonly URL_PERSONAL_LOGIN_VALIDACION="https://sso.personal.com.ar/openam/UI/Login"
+readonly URL_PERSONAL_LOGIN_VALIDACION="https://autogestion.personal.com.ar/individuos/"
+#~ readonly URL_PERSONAL_LOGIN_VALIDACION="https://sso.personal.com.ar/openam/UI/Login"
 readonly URL_PERSONAL_SALDO="https://autogestion.personal.com.ar/individuos/inicio_tarjeta.aspx"
 
 readonly ARCHIVO_DE_COOKIE=".cookie.txt"
 readonly URL_REFERENCIA="https://autogestion.personal.com.ar/individuos/Index.aspx"
 
 readonly ARCHIVO_CSV="reporte.csv"
-readonly ARCHIVO_TEMP=".temp"
+# Version nueva:
+#~ readonly ARCHIVO_TEMP=".temp"
 #Frecuencia en segundos que se usa para indicar el minimo de tiempo que debe pasar para actualizar el archivo CSV.
 # 3600 = 1HS
 readonly FREQUENCIA_MINIMA_DE_ACTUALIZACION=3600
@@ -52,16 +53,19 @@ inicializar(){
 #Recibe como parametros: $1=COD de Area, $2=Celular, $3=Contraseña y $4 recibe los parametros requeridos EVENTVALIDATION y VIEWSTATE
 completarLogin(){	 
 	#Metodo para la version anterior a la actualizacion de 02/13:
-	#~ wget -qO - --keep-session-cookies --load-cookies "$ARCHIVO_DE_COOKIE" --save-cookies "$ARCHIVO_DE_COOKIE" --referer="$URL_REFERENCIA" --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:19.0) Gecko/20100101 Firefox/19.0" --post-data "__LASTFOCUS=&__EVENTTARGET=ctl00%24BannerLogueo%24LogueoPropio%24BtnAceptar&__EVENTARGUMENT=$4&ctl00%24BannerLogueo%24LogueoPropio%24TxtArea=$1&ctl00%24BannerLogueo%24LogueoPropio%24TxtLinea=$2&ctl00%24BannerLogueo%24LogueoPropio%24TxtPin=$3&IDToken3=" "$URL_PERSONAL_LOGIN";	
-	wget -qO "$ARCHIVO_TEMP" --keep-session-cookies --load-cookies "$ARCHIVO_DE_COOKIE" --save-cookies "$ARCHIVO_DE_COOKIE" --referer="$URL_REFERENCIA" --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:19.0) Gecko/20100101 Firefox/19.0" --post-data "__LASTFOCUS=&__EVENTTARGET=&__EVENTARGUMENT=$4&TxtArea=$1&TxtLinea=$2&IDToken2=$3&IDToken1=$1$2&IDToken3=&goto=https%3A%2F%2Fautogestion.personal.com.ar%2FIndividuos%2Fdefault.aspx&gotoOnFail=https%3A%2F%2Fautogestion.personal.com.ar%2FIndividuos%2FRespuesta.aspx&realm=%2Fservicios" "$URL_PERSONAL_LOGIN_VALIDACION";	
+	wget -qO /dev/null --keep-session-cookies --load-cookies "$ARCHIVO_DE_COOKIE" --save-cookies "$ARCHIVO_DE_COOKIE" --referer="$URL_REFERENCIA" --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:19.0) Gecko/20100101 Firefox/19.0" --post-data "__LASTFOCUS=&__EVENTTARGET=ctl00%24BannerLogueo%24LogueoPropio%24BtnAceptar&__EVENTARGUMENT=$4&ctl00%24BannerLogueo%24LogueoPropio%24TxtArea=$1&ctl00%24BannerLogueo%24LogueoPropio%24TxtLinea=$2&ctl00%24BannerLogueo%24LogueoPropio%24TxtPin=$3&IDToken3=" "$URL_PERSONAL_LOGIN";	
+	#Metedo para la version nueva:
+	#~ wget -qO "$ARCHIVO_TEMP" --keep-session-cookies --load-cookies "$ARCHIVO_DE_COOKIE" --save-cookies "$ARCHIVO_DE_COOKIE" --referer="$URL_REFERENCIA" --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:19.0) Gecko/20100101 Firefox/19.0" --post-data "__LASTFOCUS=&__EVENTTARGET=&__EVENTARGUMENT=$4&TxtArea=$1&TxtLinea=$2&IDToken2=$3&IDToken1=$1$2&IDToken3=&goto=https%3A%2F%2Fautogestion.personal.com.ar%2FIndividuos%2Fdefault.aspx&gotoOnFail=https%3A%2F%2Fautogestion.personal.com.ar%2FIndividuos%2FRespuesta.aspx&realm=%2Fservicios" "$URL_PERSONAL_LOGIN_VALIDACION";	
 }
 
 #Realiza la consula correspondiente, en $1 se le debe pasar la ID de SESION
 consultarSaldo(){	
 	#Metodo para la version anterior a la actualizacion de 02/13:
-	#~ resultado=`wget -qO-  --keep-session-cookies --load-cookies "$ARCHIVO_DE_COOKIE" --save-cookies "$ARCHIVO_DE_COOKIE" --referer="$URL_REFERENCIA" --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:19.0) Gecko/20100101 Firefox/19.0" "$URL_PERSONAL_SALDO" | grep "lblSaldo" | grep -Eo "[0-9]+.[0-9]+\s*<" | sed 's/<//g'`
-	resultado=`cat "$ARCHIVO_TEMP" | grep "lblSaldo" | grep -Eo "[0-9]+.[0-9]+\s*<" | sed 's/<//g'`
-	rm "$ARCHIVO_TEMP"
+	resultado=`wget -qO-  --keep-session-cookies --load-cookies "$ARCHIVO_DE_COOKIE" --save-cookies "$ARCHIVO_DE_COOKIE" --referer="$URL_REFERENCIA" --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:19.0) Gecko/20100101 Firefox/19.0" "$URL_PERSONAL_SALDO" | grep "lblSaldo" | grep -Eo "[0-9]+.[0-9]+\s*<" | sed 's/<//g'`
+	# Metodo para la version nueva
+	#~ resultado=`cat "$ARCHIVO_TEMP" | grep "lblSaldo" | grep -Eo "[0-9]+.[0-9]+\s*<" | sed 's/<//g'`
+	#~ rm "$ARCHIVO_TEMP"
+	
 	echo $resultado
 }
 
