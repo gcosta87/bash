@@ -19,12 +19,20 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.   
 
-datos=`zenity --forms --title="Inicio de Sesión" --text="Complete los campos para iniciar session\n en el Servicio de <i>Autogestion</i> de <b>Personal</b>." --separator=":" --add-list="Codigo de Area" --list-values="221|11" --column-values=" "  --add-entry="Nº de Celular" --add-password="Contraseña"`
+datos=`zenity --forms --title="Inicio de Sesión" --text="Complete los campos para iniciar session\n en el Servicio de <i>Autogestion</i> de <b>Personal</b>." --separator=":" --add-list="Codigo de Area" --list-values="221|11" --column-values=" "  --add-entry="Nº de Celular" --add-password="Contraseña" --add-entry="Identificador/Nombre del celu"`
 if [ -n "$datos" ] && [ "$datos" != " " ]
 then
 	#Debo guardar la data en el archivo
 	codDeArea=`echo $datos | cut -f1 -d":"`
 	celular=`echo $datos | cut -f2 -d":"`
+	
+	identificador=`echo $datos | cut -f4 -d":"`
+	
+	if [ -z "$identificador" ]
+	then
+		#Si el dentifciador no ha sido definido, le agrego uno por defecto
+		datos="$datosMi Celular"
+	fi
 	
 	echo "$datos" > .$codDeArea$celular.perfil
 	
