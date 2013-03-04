@@ -73,7 +73,7 @@ consultarSaldo(){
 #En base al ult registro almacenado, calculo la diferencia del valor del saldo.
 #En $1=recibe cod de area+celular, $2=recibe el saldo actual
 calcularDiferenciaConAnterior(){
-	ultimoSaldo=`cat $ARCHIVO_CSV | grep $1 | tail -n1 | cut -f7 -d";" | grep -Eo "[0-9]+(.[0-9]*)?"`
+	ultimoSaldo=`cat $ARCHIVO_CSV | grep $1 | tail -n1 | cut -f7 -d"," | grep -Eo "[0-9]+(.[0-9]*)?"`
 	#Si no tiene saldo anterior lo seteo en 0
 	if [ -n "$ultimoSaldo" ]
 	then
@@ -121,6 +121,7 @@ do
 	codDeArea=`echo $datosDelPerfil | cut -f1 -d":"`
 	celular=`echo $datosDelPerfil | cut -f2 -d":"`
 	passwd=`echo $datosDelPerfil | cut -f3 -d":"`	
+	identificador=`echo $datosDelPerfil | cut -f4 -d":"`	
 	
 	
 	EV=$(inicializar)
@@ -129,7 +130,10 @@ do
 	
 	if [ -n "$saldo" ] && [ "$saldo" != " " ]
 	then
-		notify-send "Saldo de $celular: $saldo."	
+		#calculo la diferencia con la ultima vez
+		diferenciaDeSaldo=$(calcularDiferenciaConAnterior "$codDeArea$celular" "$saldo")
+		
+		notify-send "Saldo de $identificador ($celular):" "$saldo ($diferenciaDeSaldo)."	
 		registrarEnArchivoCSV "$codDeArea$celular" "$saldo"
 	else
 		notify-send "No se ha podido obtener el saldo del celular $celular."	
