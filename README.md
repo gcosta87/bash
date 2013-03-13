@@ -35,3 +35,10 @@ Son dos pequeños scripts para:
 Gracias a ellos es posible, usando en su conjunto, obtener un listado de titulos en base a una busqueda de IMDB.
 
 Puede llegar a ser útil para armar listados temáticos: Peliculas de los 80, protagonizadas por determinado actor,etc.
+
+
+## DocumentadorJS
+
+Script en estado (bastante) experimental, que posibilita la creacion de un HTML en base a un archivo de codigo fuente con comentarios especiales. 
+
+Esta inspirado en el clásico JavaDoc, y se le pretende dar uso de forma humilde en pequeños proyectos de NodeJS.
