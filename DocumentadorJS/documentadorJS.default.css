@@ -1,0 +1,77 @@
+body {
+    font-family: sans,sans-serif,arial;
+    margin: auto 20px;
+}
+.nombreArchivo {
+    text-align: center;
+    font-size: 3em;
+    padding: 25px 0px;
+    letter-spacing: 3px;
+}
+.estado span{
+    background-color: #E0E0E0;
+    color: Black;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding:2px 4px;
+}
+.funcion {
+    background-color: #fafafc;
+    margin: 50px 20px;
+    padding: 10px 15px;
+    border: 1px solid #eee;
+    -moz-box-shadow: 8px 12px 15px #aaa;
+    -webkit-box-shadow: 8px 12px 15px #aaa;
+    box-shadow: 8px 12px 15px #aaa;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+ /*	LISTA DE FUNCIONES	*/
+
+.listaDeFunciones  ul{
+	width: 70em;
+	list-style-type:none;
+}
+.listaDeFunciones ul  li{
+	float: left;
+	width: 25em;
+	margin:2px;
+}
+.listaDeFunciones ul  li a{
+	color: black;
+}
+.listaDeFunciones  br{
+	clear: left;
+}
+
+.listaDeFunciones{
+	margin-bottom: 1em;	
+}
+.linkInicio{
+	float:right;
+	position: relative;
+}
+.linkInicio a{
+	color:gray;
+	text-decoration:none;
+}
+
+/*	Tipos de Datos	*/
+span.cadena, span.string{
+	color: red;
+}
+
+span.número, span.numero, span.number{
+	color: #1122CC;
+}
+
+span.objeto, span.object{
+	color: LightSlateGrey ;
+}
+
+span.arreglo, span.array{
+	color: yellowGreen ;
+}
